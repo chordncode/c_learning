@@ -7,8 +7,8 @@ int main(){
 
 	printf("\'a\' is %d\n", a);
 	printf("Address for \'a\' is %p\n", pA);
-	printf("Dereferenced Pointer Value is %d\n", *pA);
-	printf("Also, Dereferenced Pointer Value is %d\n", *&a);
+	printf("Value from pointer is %d\n", *pA);
+	printf("Also, dereferenced pointer value is %d\n", *&a);
 
 	return 0;
 
