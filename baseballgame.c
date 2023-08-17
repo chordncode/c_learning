@@ -10,40 +10,54 @@ int getRndNum();
 int* splitInputNum(int input);
 // empty the buffer from scanf
 void emptyBuffer();
+// get the number of the same number located at the same index
+int getStrikeCount(int* nums, int* inputArr);
+// get the number of the same number but it is located at the different index
+int getBallCount(int* nums, int* inputArr);
 
 int main (void){
 
 	int* nums = getGameNum();
+//	for(int i = 0; i < 3; i++){
+//		printf("%d", nums[i]);
+//	}
+//	printf("\n");
 
 	while(1){
 
+		int strike;
+		int ball;
 		int input;
 		printf("Input 3 numbers : ");
 		if(scanf("%d", &input) != 1){
 			printf("Invalid Number\n");
-
 			emptyBuffer();
 			continue;
 	       	}
 
-		printf("%d\n", input);
+//		printf("%d\n", input);
 
 		int* inputArr = splitInputNum(input);
-		for(int i = 0; i < 3; i++){
 
-			printf("splited[%d] : %d\n", i, inputArr[i]);
+		strike = getStrikeCount(nums, inputArr);
+		ball = getBallCount(nums, inputArr);
 
+		printf("%dS%dB\n", strike, ball);
+
+		if(strike == 3){
+			printf("Yow Win!\n");
+			break;
 		}
 
 	}
 
 	return 0;
-};
+}
 
 int getRndNum(){
 	srand(time(NULL));
 	return rand() % 9 + 1;
-};
+}
 
 int* getGameNum(){
 
@@ -73,7 +87,7 @@ int* getGameNum(){
 	}
 
 	return nums;
-};
+}
 
 int* splitInputNum(int input){
 
@@ -90,4 +104,31 @@ int* splitInputNum(int input){
 void emptyBuffer(){
 	int c;
 	while((c = getchar()) != '\n' && c != EOF);
+}
+
+int getStrikeCount(int* nums, int* inputArr){
+
+	int strike = 0;
+	for(int i = 0; i < 3; i++){
+		if(nums[i] == inputArr[i]){
+			strike++;
+		}	
+	}
+
+	return strike;
+}
+
+int getBallCount(int* nums, int* inputArr){
+	
+	int ball = 0;
+	for(int i = 0; i < 3; i++){
+		for(int j = 0; j < 3; j++){
+			if(i == j) continue;
+			if(nums[i] == inputArr[j]){
+				ball++;
+			}
+		}
+	}
+
+	return ball;
 }
