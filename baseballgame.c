@@ -29,7 +29,7 @@ int main (void){
 		int ball;
 		int input;
 		printf("Input 3 numbers : ");
-		if(scanf("%d", &input) != 1){
+		if(scanf("%d", &input) != 1 || input > 999){
 			printf("Invalid Number\n");
 			emptyBuffer();
 			continue;
