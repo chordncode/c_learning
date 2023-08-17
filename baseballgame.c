@@ -2,9 +2,14 @@
 #include <stdlib.h>
 #include <time.h>
 
-int getRndNum();
+// create an array with non-duplicate numbers
 int* getGameNum();
+// create a random number using rand()
+int getRndNum();
+// split the input number
 int* splitInputNum(int input);
+// empty the buffer from scanf
+void emptyBuffer();
 
 int main (void){
 
@@ -17,8 +22,7 @@ int main (void){
 		if(scanf("%d", &input) != 1){
 			printf("Invalid Number\n");
 
-			int c;
-			while((c = getchar()) != '\n' && c != EOF);
+			emptyBuffer();
 			continue;
 	       	}
 
@@ -81,4 +85,9 @@ int* splitInputNum(int input){
 
 	return inputArr;
 
+}
+
+void emptyBuffer(){
+	int c;
+	while((c = getchar()) != '\n' && c != EOF);
 }
