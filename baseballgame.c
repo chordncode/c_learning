@@ -4,14 +4,33 @@
 
 int getRndNum();
 int* getGameNum();
+int* splitInputNum(int input);
 
 int main (void){
 
 	int* nums = getGameNum();
 
-	for(int i = 0; i < 3; i++){
+	while(1){
 
-		printf("%d\n", nums[i]);
+		int input;
+		printf("Input 3 numbers : ");
+		if(scanf("%d", &input) != 1){
+			printf("Invalid Number\n");
+
+			int c;
+			while((c = getchar()) != '\n' && c != EOF);
+			continue;
+	       	}
+
+		printf("%d\n", input);
+
+		int* inputArr = splitInputNum(input);
+		for(int i = 0; i < 3; i++){
+
+			printf("splited[%d] : %d\n", i, inputArr[i]);
+
+		}
+
 	}
 
 	return 0;
@@ -52,3 +71,14 @@ int* getGameNum(){
 	return nums;
 };
 
+int* splitInputNum(int input){
+
+	static int inputArr[3];
+
+	inputArr[0] = input / 100;
+	inputArr[1] = (input / 10) % 10;
+	inputArr[2] = input % 10;
+
+	return inputArr;
+
+}
