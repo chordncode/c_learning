@@ -7,9 +7,9 @@ int* getGameNum();
 
 int main (void){
 
-	int nums[] = getGameNum();
+	int* nums = getGameNum();
 
-	for(int i = 0; i < sizeof(nums); i++){
+	for(int i = 0; i < 3; i++){
 
 		printf("%d\n", nums[i]);
 	}
@@ -29,21 +29,24 @@ int* getGameNum(){
 	int i = 0;
 	int rndNum;
 
-	while(sizeof((nums[i++] = getRndNum())) < 3){
+	while(i < 3){
+
 		rndNum = getRndNum();
-		int j = 0;
-		for(j = 0; j < sizeof(nums); j++){
+
+		int j;
+		for(j = 0; j < i; j++){
 
 			if(nums[j] == rndNum){
 				rndNum = -1;
 				break;
 			}	
 		}
-		if(rndNum == -1){
-			continue;
+
+		if(rndNum != -1){
+			nums[i] = rndNum;
+			i++;
 		}
 
-		nums[i++] = rndNum;
 	}
 
 	return nums;
